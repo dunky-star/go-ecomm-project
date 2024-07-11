@@ -3,14 +3,16 @@ package user
 import (
 	"net/http"
 
+	"github.com/dunky-star/ecomm-proj/payloads"
 	"github.com/gorilla/mux"
 )
 
 type Handler struct {
+	store payloads.UserStore
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(store payloads.UserStore) *Handler {
+	return &Handler{store: store}
 }
 
 func (h *Handler) RegisterRoutes(router *mux.Router){
