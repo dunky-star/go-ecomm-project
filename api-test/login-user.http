@@ -1,0 +1,7 @@
+POST http://localhost:9090/api/v1/login
+content-type: application/json
+
+{
+    "email": "duncan@mail.com",
+    "password": "qwerty"
+}

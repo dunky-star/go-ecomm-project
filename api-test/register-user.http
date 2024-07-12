@@ -1,0 +1,9 @@
+POST http://localhost:9090/api/v1/register
+content-type: application/json
+
+{
+    "email": "duncan@mail.com",
+    "password": "qwerty",
+    "firstName": "Geoffrey",
+    "lastName": "Opiyo"
+}
