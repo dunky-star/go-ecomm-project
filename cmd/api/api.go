@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/dunky-star/ecomm-proj/services/product"
 	"github.com/dunky-star/ecomm-proj/services/user"
 	"github.com/gorilla/mux"
 )
@@ -29,6 +30,10 @@ func (s *APIServer) Run() error{
 	userStore := user.NewStore(s.db) // Dependency injection
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
+
+	productStore := product.NewStore(s.db)
+	productHandler := product.NewHandler(productStore, userStore)
+	productHandler.RegisterRoutes(subrouter)
 
 	log.Println("Listening on: ", s.addr)
 
