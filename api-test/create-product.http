@@ -1,0 +1,11 @@
+POST http://localhost:9090/api/v1/products
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzQXQiOjE3MjE0OTk4OTgsInVzZXJJRCI6IjEifQ.PM6CfVghzdf37_FJLfpuRO6cHWv2C1imxttn0wHEvYg
+
+{
+    "name": "Acer Swift Go Intel Evo",
+    "description": "Screen Display Intel Core i7-1355U Intel Iris Xe 16GB LPDDR5 512GB Gen 4 SSD SFG14-71T-72QV",
+    "image": "acer-i7-1335u-laptop.png",
+    "price": 588,
+    "quantity": 1000
+}

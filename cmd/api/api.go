@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/dunky-star/ecomm-proj/services/cart"
 	"github.com/dunky-star/ecomm-proj/services/product"
 	"github.com/dunky-star/ecomm-proj/services/user"
 	"github.com/gorilla/mux"
@@ -15,19 +16,18 @@ type APIServer struct {
 	db   *sql.DB
 }
 
-func NewAPIServer(addr string, db *sql.DB) *APIServer{
+func NewAPIServer(addr string, db *sql.DB) *APIServer {
 	return &APIServer{
 		addr: addr,
-		db: db,
+		db:   db,
 	}
 }
 
-func (s *APIServer) Run() error{
-
+func (s *APIServer) Run() error {
 	router := mux.NewRouter()
 	subrouter := router.PathPrefix("/api/v1").Subrouter()
 
-	userStore := user.NewStore(s.db) // Dependency injection
+	userStore := user.NewStore(s.db)
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
 
@@ -35,7 +35,15 @@ func (s *APIServer) Run() error{
 	productHandler := product.NewHandler(productStore, userStore)
 	productHandler.RegisterRoutes(subrouter)
 
-	log.Println("Listening on: ", s.addr)
+	orderStore := order.NewStore(s.db)
+
+	cartHandler := cart.NewHandler(productStore, orderStore, userStore)
+	cartHandler.RegisterRoutes(subrouter)
+
+	// Serve static files
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
+
+	log.Println("Listening on", s.addr)
 
 	return http.ListenAndServe(s.addr, router)
 }
