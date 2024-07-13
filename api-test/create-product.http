@@ -1,6 +1,6 @@
 POST http://localhost:9090/api/v1/products
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzQXQiOjE3MjE0OTk4OTgsInVzZXJJRCI6IjEifQ.PM6CfVghzdf37_FJLfpuRO6cHWv2C1imxttn0wHEvYg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzQXQiOjE3MjE1MDY1ODAsInVzZXJJRCI6IjEifQ.FIQc1E9PEs-zVplZ9rv3PlkNkCyclrfClIEevdgs-7o
 
 {
     "name": "Acer Swift Go Intel Evo",
