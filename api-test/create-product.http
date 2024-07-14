@@ -1,11 +1,11 @@
 POST http://localhost:9090/api/v1/products
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzQXQiOjE3MjE1MzE0ODAsInVzZXJJRCI6IjEifQ.yOYtFmP4565xi0aIHAsQfn0CX6tfxFhZpmUarh5Y7GU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzQXQiOjE3MjE1MzMxMjQsInVzZXJJRCI6IjEifQ.0VVEOW-mxh4EZn_9cq0KsesiAyZ7gcn6JZ-l3wNv3h4
 
 {
     "name": "Dell Spire",
     "description": "Intel Core i7-1355U Gaming Laptop",
     "image": "Dell-i7-1335u-laptop.png",
-    "price": 2000,
+    "price": 4000,
     "quantity": 1000
 }
