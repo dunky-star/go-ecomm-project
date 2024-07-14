@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/dunky-star/ecomm-proj/configs"
@@ -20,7 +21,15 @@ const UserKey contextKey = "userID"
 
 func WithJWTAuth(handlerFunc http.HandlerFunc, store payloads.UserStore) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		tokenString := utils.GetTokenFromRequest(r)
+		authHeader := r.Header.Get("Authorization")
+		if authHeader == "" {
+			log.Println("Authorization header missing")
+			permissionDenied(w)
+			return
+		}
+
+		// Strip "Bearer " prefix if present
+		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 
 		token, err := validateJWT(tokenString)
 		if err != nil {
